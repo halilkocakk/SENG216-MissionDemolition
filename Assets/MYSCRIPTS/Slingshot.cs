@@ -6,7 +6,10 @@ public class Slingshot : MonoBehaviour
     public GameObject projectilePrefab;
     public float velocityMultiplier = 10f;
     
+    [SerializeField] private BoxCollider ground;
+
     private GameObject projectile;
+    private float minimumProjectileY = float.NegativeInfinity;
     private Vector3 launchPos;
     private bool aimingMode;
     private Vector3 mouseStartPos;
@@ -48,6 +51,11 @@ public class Slingshot : MonoBehaviour
         projectile.transform.position = launchPos;
         
         projectile.GetComponent<Rigidbody>().isKinematic = true;
+        if (ground != null && projectile.TryGetComponent<SphereCollider>(out var sphere))
+        {
+            Bounds bounds = sphere.bounds;
+            minimumProjectileY = ground.bounds.max.y + projectile.transform.position.y - bounds.min.y;
+        }
     }
 
     private void Update()
@@ -70,6 +78,7 @@ public class Slingshot : MonoBehaviour
         
         mouseDelta = Vector3.ClampMagnitude(mouseDelta, maxMagnitude);
         
+        mouseDelta.y = Mathf.Max(mouseDelta.y, minimumProjectileY - launchPos.y);
         projectile.transform.position = launchPos + mouseDelta;
 
         if (Input.GetMouseButtonUp(0))
