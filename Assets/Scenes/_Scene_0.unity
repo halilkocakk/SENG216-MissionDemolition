@@ -244,7 +244,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Text
   m_Material: {fileID: 0}
-  m_Color: {r: 0.19607843, g: 0.19607843, b: 0.19607843, a: 1}
+  m_Color: {r: 0, g: 0, b: 0, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -661,15 +661,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4a018ecfc0a81ad40babff1eebb662ba, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::MissionDemolition
+  uitLevel: {fileID: 137441730}
+  uitShots: {fileID: 1775708295}
   castlePos: {x: 10, y: -9.5, z: 0}
   castles:
-  - {fileID: 492583562, guid: 6371e8aef921476dbe93c058c5c2e86d, type: 3}
   - {fileID: 492583562, guid: b3c27205adbf4aaca83d4e8f6022844f, type: 3}
   - {fileID: 492583562, guid: f9742385c22a4e69a45fca350cbd7174, type: 3}
   - {fileID: 492583562, guid: a4654d449836479e8bbbb63a32cbcded, type: 3}
+  - {fileID: 492583562, guid: 6371e8aef921476dbe93c058c5c2e86d, type: 3}
   level: 0
   levelMax: 0
   castle: {fileID: 0}
+  shotsTaken: 0
+  mode: 0
+  showing: Show Slingshot
 --- !u!1 &410087039
 GameObject:
   m_ObjectHideFlags: 0
@@ -1275,7 +1280,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Text
   m_Material: {fileID: 0}
-  m_Color: {r: 0.19607843, g: 0.19607843, b: 0.19607843, a: 1}
+  m_Color: {r: 0, g: 0, b: 0, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -1284,10 +1289,10 @@ MonoBehaviour:
       m_Calls: []
   m_FontData:
     m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
-    m_FontSize: 14
+    m_FontSize: 32
     m_FontStyle: 0
     m_BestFit: 0
-    m_MinSize: 10
+    m_MinSize: 3
     m_MaxSize: 40
     m_Alignment: 0
     m_AlignByGeometry: 0
