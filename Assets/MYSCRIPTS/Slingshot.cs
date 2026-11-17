@@ -5,6 +5,8 @@ public class Slingshot : MonoBehaviour
     public GameObject aimIndicator;
     public GameObject projectilePrefab;
     public float velocityMultiplier = 10f;
+
+    public GameObject projLinePrefab;
     
     [SerializeField] private BoxCollider ground;
 
@@ -91,9 +93,13 @@ public class Slingshot : MonoBehaviour
         {
             aimingMode = false;
             
+            FollowCam.SWITCH_VIEW(FollowCam.eView.slingshot);
+            FollowCam.POI = projectile;
+
             projectile.GetComponent<Projectile>().Launch(mouseDelta, velocityMultiplier);
 
             MissionDemolition.SHOT_FIRED();
+            Instantiate<GameObject>(projLinePrefab, projectile.transform);
 
             projectile = null;
         }

@@ -193,7 +193,39 @@ MonoBehaviour:
   aimIndicator: {fileID: 288177486}
   projectilePrefab: {fileID: 8076656032840734284, guid: af2495d35f1f69e4c8b313c17548a383, type: 3}
   velocityMultiplier: 7
+  projLinePrefab: {fileID: 4798138907355678100, guid: 78aa0fcf3eb217c4e9cc76cb300aab8f, type: 3}
   ground: {fileID: 2095691448}
+--- !u!1 &180248950
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 180248951}
+  m_Layer: 0
+  m_Name: ViewBoth
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &180248951
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 180248950}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 25, y: 25, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &137441728
 GameObject:
   m_ObjectHideFlags: 0
@@ -524,6 +556,7 @@ GameObject:
   - component: {fileID: 330585544}
   - component: {fileID: 330585547}
   - component: {fileID: 330585548}
+  - component: {fileID: 330585549}
   m_Layer: 0
   m_Name: _MainCamera
   m_TagString: MainCamera
@@ -675,6 +708,23 @@ MonoBehaviour:
   shotsTaken: 0
   mode: 0
   showing: Show Slingshot
+--- !u!114 &330585549
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 330585543}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8cfc563b27be0b644a54570ef6b4a58c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::FollowCam
+  easing: 0.05
+  minXY: {x: 0, y: 0}
+  viewBothGO: {fileID: 180248950}
+  camZ: 0
+  nextView: 1
 --- !u!1 &410087039
 GameObject:
   m_ObjectHideFlags: 0
@@ -3754,5 +3804,6 @@ SceneRoots:
   - {fileID: 910000000001}
   - {fileID: 910000000400}
   - {fileID: 910000000500}
+  - {fileID: 180248951}
   - {fileID: 2077980081}
   - {fileID: 216041706}
