@@ -16,6 +16,10 @@ public class Slingshot : MonoBehaviour
     private bool aimingMode;
     private Vector3 mouseStartPos;
 
+    private LineRenderer rubberLine;
+    private Transform leftTip;
+    private Transform rightTip;
+
     void Awake()
     {
         Transform launchPoint = transform.Find("LaunchPoint");
@@ -24,6 +28,16 @@ public class Slingshot : MonoBehaviour
 
         aimIndicator = launchPoint.Find("AimIndicator").gameObject;
         aimIndicator.SetActive(false);
+        leftTip = transform.Find("LeftTip");
+        rightTip = transform.Find("RightTip");
+        rubberLine = GetComponent<LineRenderer>();
+        if (rubberLine != null && leftTip != null && rightTip != null)
+        {
+            rubberLine.positionCount = 3;
+            rubberLine.SetPosition(0, leftTip.position);
+            rubberLine.SetPosition(1, launchPos);
+            rubberLine.SetPosition(2, rightTip.position);
+        }
     }
     void OnMouseEnter()
     {
@@ -89,6 +103,13 @@ public class Slingshot : MonoBehaviour
         mouseDelta.y = Mathf.Max(mouseDelta.y, minimumProjectileY - launchPos.y);
         projectile.transform.position = launchPos + mouseDelta;
 
+        if (rubberLine != null && leftTip != null && rightTip != null)
+        {
+            rubberLine.SetPosition(0, leftTip.position);
+            rubberLine.SetPosition(1, projectile.transform.position);
+            rubberLine.SetPosition(2, rightTip.position);
+        }
+
         if (Input.GetMouseButtonUp(0))
         {
             aimingMode = false;
@@ -98,7 +119,13 @@ public class Slingshot : MonoBehaviour
 
             projectile.GetComponent<Projectile>().Launch(mouseDelta, velocityMultiplier);
 
+            MissionDemolition.SHOT_FIRED();
             Instantiate<GameObject>(projLinePrefab, projectile.transform);
+
+            if (rubberLine != null)
+            {
+                rubberLine.SetPosition(1, launchPos);
+            }
 
             projectile = null;
         }
