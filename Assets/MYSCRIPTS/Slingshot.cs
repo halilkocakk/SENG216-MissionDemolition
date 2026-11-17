@@ -61,6 +61,12 @@ public class Slingshot : MonoBehaviour
     private void Update()
     {
         if (!aimingMode) return;
+
+        if (!projectile)
+        {
+            aimingMode = false;
+            return;
+        }
         
         Camera cam = Camera.main;
         if (cam == null) return;

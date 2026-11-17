@@ -28,6 +28,15 @@ public class Projectile : MonoBehaviour
         isAwake = true;
     }
 
+    public static void DESTROY_PROJECTILES()
+    {
+        foreach (var projectile in FindObjectsByType<Projectile>(FindObjectsInactive.Include))
+        {
+            projectile.gameObject.SetActive(false);
+            Destroy(projectile.gameObject);
+        }
+    }
+
     private void FixedUpdate()
     {
         if (!isAwake || body.isKinematic)
