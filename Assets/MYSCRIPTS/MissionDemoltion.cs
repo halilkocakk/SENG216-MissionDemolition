@@ -19,7 +19,7 @@ public class MissionDemolition : MonoBehaviour
      [Header("Inscribed")]
     public Text uitLevel;              // UIText_Level Text referansı
     public Text uitShots;  
-    public Vector3 castlePos = new Vector3(10, -9.5f, 0);
+    public Vector3 castlePos = new Vector3(50, -9.5f, 0);
     public GameObject[] castles;
 
     [Header("Dynamic")]
@@ -60,8 +60,7 @@ public class MissionDemolition : MonoBehaviour
 
         // Create the new castle
         if (castles != null && castles.Length > 0) {
-            castle = Instantiate<GameObject>(castles[level]);
-            castle.transform.position = castlePos;
+            castle = Instantiate<GameObject>(castles[level], castlePos, Quaternion.identity);
         }
 
         Goal.goalMet = false;
@@ -69,6 +68,7 @@ public class MissionDemolition : MonoBehaviour
         
         UpdateGUI();
         mode = GameMode.playing;
+        FollowCam.SWITCH_VIEW(FollowCam.eView.both);
 
        
     }
@@ -91,10 +91,12 @@ public class MissionDemolition : MonoBehaviour
             // Consume the hit even if a transition is already scheduled.
             Goal.goalMet = false;
             mode = GameMode.levelEnd;
+            FollowCam.SWITCH_VIEW(FollowCam.eView.both);
 
             // Load the next level after 2 seconds
             if (!IsInvoking(nameof(NextLevel)))
                 Invoke(nameof(NextLevel), 2f);
+            
         }
     }
 
