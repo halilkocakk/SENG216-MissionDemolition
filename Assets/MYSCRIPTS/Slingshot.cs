@@ -93,6 +93,8 @@ public class Slingshot : MonoBehaviour
             
             projectile.GetComponent<Projectile>().Launch(mouseDelta, velocityMultiplier);
 
+            MissionDemolition.SHOT_FIRED();
+
             projectile = null;
         }
 
