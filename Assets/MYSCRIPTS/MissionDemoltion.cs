@@ -44,8 +44,6 @@ public class MissionDemolition : MonoBehaviour
         castle.transform.position = castlePos;
 
         Debug.Log("Level started: " + (level + 1));
-
-        FollowCam.SWITCH_VIEW(FollowCam.eView.both);
     }
 
     void Update()
@@ -53,7 +51,6 @@ public class MissionDemolition : MonoBehaviour
         // Check whether the goal has been reached
         if (Goal.goalMet)
         {
-            FollowCam.SWITCH_VIEW(FollowCam.eView.both);
             // Consume the hit even if a transition is already scheduled.
             Goal.goalMet = false;
 
