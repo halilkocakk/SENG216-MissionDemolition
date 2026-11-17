@@ -2,6 +2,8 @@ using UnityEngine;
 
 public class MissionDemolition : MonoBehaviour
 {
+    static private MissionDemolition S;
+
     [Header("Level Settings")]
     public Vector3 castlePos = new Vector3(10, -9.5f, 0);
     public GameObject[] castles;
@@ -13,6 +15,7 @@ public class MissionDemolition : MonoBehaviour
 
     void Start()
     {
+        S = this;
         level = 0;
         levelMax = castles.Length;
 
@@ -41,6 +44,8 @@ public class MissionDemolition : MonoBehaviour
         castle.transform.position = castlePos;
 
         Debug.Log("Level started: " + (level + 1));
+
+        FollowCam.SWITCH_VIEW(FollowCam.eView.both);
     }
 
     void Update()
@@ -48,6 +53,7 @@ public class MissionDemolition : MonoBehaviour
         // Check whether the goal has been reached
         if (Goal.goalMet)
         {
+            FollowCam.SWITCH_VIEW(FollowCam.eView.both);
             // Consume the hit even if a transition is already scheduled.
             Goal.goalMet = false;
 
@@ -69,5 +75,10 @@ public class MissionDemolition : MonoBehaviour
         }
 
         StartLevel();
+    }
+
+    static public GameObject GET_CASTLE()
+    {
+        return S.castle;
     }
 }
