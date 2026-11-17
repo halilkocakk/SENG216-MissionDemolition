@@ -56,8 +56,7 @@ public class FollowCam : MonoBehaviour {
                 nextView = eView.castle;
                 break;
             case eView.castle:
-                // 4. ve 5. görev birleştiğinde aşağıdaki satırın yorumunu kaldır:
-                // POI = MissionDemolition.GET_CASTLE();
+                POI = MissionDemolition.GET_CASTLE();
                 nextView = eView.both;
                 break;
             case eView.both:
